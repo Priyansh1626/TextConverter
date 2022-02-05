@@ -39,7 +39,7 @@ export default function Form(props) {
     return (
         <>
             <div className="container" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
-                <h1 className="my-2"> {props.heading}</h1>
+                <h1 className="my-8"> {props.heading}</h1>
                 <div className="mb-3">
                     <textarea className="form-control" value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === 'light' ? 'white' : '#0b1f2d', color: props.mode === 'light' ? 'black' : 'white' }} id="textArea" rows="8" >{text}</textarea>
                 </div>
@@ -64,10 +64,10 @@ export default function Form(props) {
                     Text Summary
                 </h2>
                 <p className='my-2'>
-                    {text.split(" ").length} words(including space) and {text.length} characters.
+                    {text.split(" ").filter((element) => { return element.length !== 0 }).length} words(including space) and {text.length} characters.
                 </p>
                 <p className='my-2'>
-                    It will take {0.008 * text.split(" ").length} words per minute to read
+                    It will take {0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} words per minute to read
                 </p>
                 <div style={{ minHeight: '20vh' }}>
                     <h2>
