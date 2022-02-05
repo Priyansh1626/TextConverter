@@ -25,9 +25,7 @@ export default function Form(props) {
     }
 
     const handleCopy = () => {
-        let text = document.getElementById("textArea");
-        text.select();
-        navigator.clipboard.writeText(text.value);
+        navigator.clipboard.writeText(text);
         props.showAlert("Copied to clip board", "success");
     }
 
@@ -64,12 +62,12 @@ export default function Form(props) {
                     Text Summary
                 </h2>
                 <p className='my-2'>
-                    {text.split(" ").filter((element) => { return element.length !== 0 }).length} words(including space) and {text.length} characters.
+                    {text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} words(including space) and {text.length} characters.
                 </p>
                 <p className='my-2'>
-                    It will take {0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} words per minute to read
+                    It will take {0.008 * text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} words per minute to read
                 </p>
-                <div style={{ minHeight: '20vh' }}>
+                <div style={{ minHeight: '30vh' }}>
                     <h2>
                         Preview
                     </h2>
