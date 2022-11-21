@@ -1,12 +1,16 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Form from './components/Form';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Alert from './components/Alert';
 
 function App() {
 
-  const [mode, setMode] = useState('light');
+  useEffect(() => {
+    document.body.style.backgroundColor = '#042743';
+  }, [])
+
+  const [mode, setMode] = useState('dark');
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
@@ -19,16 +23,29 @@ function App() {
     }, 1500);
   }
 
+
+  // const toggleMode = () => {
+  //   if (mode === 'light') {
+  //     setMode('dark');
+  //     document.body.style.backgroundColor = '#042743';
+  //     showAlert("Dark mode on", "success");
+  //   }
+  //   else {
+  //     setMode('light');
+  //     document.body.style.backgroundColor = 'white';
+  //     showAlert("Light mode on", "success");
+  //   }
+  // }
   const toggleMode = () => {
-    if (mode === 'light') {
-      setMode('dark');
-      document.body.style.backgroundColor = '#042743';
-      showAlert("Dark mode on", "success");
-    }
-    else {
-      setMode('light');
+    if (mode === 'dark') {
+      setMode("light")
       document.body.style.backgroundColor = 'white';
       showAlert("Light mode on", "success");
+    }
+    else if (mode === 'light') {
+      setMode("dark")
+      document.body.style.backgroundColor = '#042743';
+      showAlert("Dark mode on", "success");
     }
   }
 
